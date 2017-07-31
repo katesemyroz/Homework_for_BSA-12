@@ -1,0 +1,8 @@
+#addUser{
+	margin: 10px;
+	width: 280px;
+}
+
+#addUser button{
+	float: right;
+}

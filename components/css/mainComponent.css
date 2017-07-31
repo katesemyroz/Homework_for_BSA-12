@@ -1,0 +1,6 @@
+#mainComponent{
+	position: absolute;
+      left: 40%;
+      translateX: (-50%);
+      	border: 1px solid;
+}
