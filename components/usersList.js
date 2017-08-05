@@ -13,12 +13,12 @@ class UsersList extends Component{
     }
 
     render() {
-        const searchMode = this.props.stateFromReducer.searchMode;
-        var allUsers;
+        const searchMode = this.props.searchMode;
+        var allUsers = [];
         if (!searchMode)
-    	   allUsers = this.props.stateFromReducer.allUsers;
+    	   allUsers = this.props.allUsers;
         else
-            allUsers = this.props.stateFromReducer.searchedUsers;
+            allUsers = this.props.searchedUsers;
         return (
         	<div id="list">
                 { allUsers.map( (elem, index, allUsers) => {
@@ -36,7 +36,9 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     return {
-        stateFromReducer: state
+        allUsers: state.allUsers,
+        searchedUsers: state.searchedUsers,
+        searchMode: state.searchMode
     };
 }
 

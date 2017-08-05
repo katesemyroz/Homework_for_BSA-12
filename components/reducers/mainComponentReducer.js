@@ -8,27 +8,22 @@ const initialState = {
 export default function patentDetailsReducer(state = initialState, action) {
     switch (action.type) {
         case 'ADD_USER': {
-            const  {newUserName, id, newUser, allUsers, searchMode} = action;
-            // console.log("state:");
-            // console.log(state);
-            return Object.assign({}, state, {
-                id,
-                allUsers ,
-                searchMode             
-            })
+            var newState = Object.assign({}, state); 
+            newState.id = action.id;
+            newState.allUsers = action.allUsers;
+            newState.searchMode = action.searchMode;
+            return newState;
         }
         case 'REMOVE_USER': {
-            const { allUsers } = action
-            return Object.assign({}, state, {
-                allUsers
-            })               
+            var newState = Object.assign({}, state); 
+            newState.allUsers = action.allUsers;
+            return newState;              
         }
         case 'SEARCH_USER': {
-            const { searchedUsers, searchMode } = action
-            return Object.assign({}, state, {
-                searchedUsers,
-                searchMode
-            })               
+            var newState = Object.assign({}, state); 
+            newState.searchedUsers = action.searchedUsers;
+            newState.searchMode = action.searchMode;
+            return newState;              
         }
         default: {
             return state;        

@@ -12,13 +12,18 @@ class ShowUser extends Component{
     }
 
     handleRemoveUser(event){
-        this.props.removeUser(this.props.id, this.props.stateFromReducer.allUsers);
+        this.props.removeUser(this.props.id, this.props.allUsers);
     }
 
     render() {
+        var listOfUsers = [];
+        if (this.props.searchMode)
+            listOfUsers = this.props.searchedUsers;
+        else
+            listOfUsers = this.props.allUsers;            
         return (
             <div className="user">
-                <p>{this.props.stateFromReducer.allUsers[this.props.id].value}</p>
+                <p>{listOfUsers[this.props.id].value}</p>
                 <button onClick={this.handleRemoveUser}>Remove User</button>
             </div>
         )
@@ -31,7 +36,9 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     return {
-        stateFromReducer: state
+        allUsers: state.allUsers,
+        searchMode: state.searchMode,
+        searchedUsers: state.searchedUsers
     };
 }
 const ShowUserConnected = connect(mapStateToProps, mapDispatchToProps)(ShowUser);

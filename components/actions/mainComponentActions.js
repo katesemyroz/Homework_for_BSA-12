@@ -11,9 +11,10 @@ export function addUser(value, id, allUsers) {
 
 export function removeUser(value, allUsers) {
     allUsers.splice(value, 1);
+    const newUsers = [...allUsers];
     const action = {
         type: 'REMOVE_USER',
-        allUsers: allUsers
+        allUsers: newUsers
     };
     return action;
 }

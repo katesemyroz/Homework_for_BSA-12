@@ -6,8 +6,8 @@ import * as actions from "./actions/mainComponentActions";
 import './css/addUser.css';
 
 class AddUser extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.handleAddUser = this.handleAddUser.bind(this);
     }
 
@@ -17,7 +17,7 @@ class AddUser extends Component{
 
     addUser(newName) {
         if (newName != "")
-            this.props.addUser(newName, this.props.stateFromReducer.id, this.props.stateFromReducer.allUsers);
+            this.props.addUser(newName, this.props.id, this.props.allUsers);
 
     }
 
@@ -37,7 +37,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     return {
-        stateFromReducer: state
+        id: state.id,
+        allUsers: state.allUsers
     };
 }
 const AddUserConnected = connect(mapStateToProps, mapDispatchToProps)(AddUser);

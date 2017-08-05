@@ -14,7 +14,7 @@ class FilterUsers extends Component{
     search(){
         var inp = (this.refs.Search).value.toLowerCase();
         var searchedUsers = [];
-        const allUsers = this.props.stateFromReducer.allUsers;
+        const allUsers = this.props.allUsers;
         if (allUsers.length > 0){
             for (var user in allUsers){
                 if ((allUsers[user].value.toLowerCase()).indexOf(inp) != -1){
@@ -22,6 +22,8 @@ class FilterUsers extends Component{
                 }
             }   
         }
+        if (inp.length == 0)
+            searchedUsers = this.props.allUsers;
         this.props.searchUsers(searchedUsers);
     }
 
@@ -40,7 +42,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     return {
-        stateFromReducer: state
+        allUsers: state.allUsers
     };
 }
 const FilterUsersConnected = connect(mapStateToProps, mapDispatchToProps)(FilterUsers);
